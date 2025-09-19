@@ -16,7 +16,7 @@
 					<form method="post" action="options.php">
 						<?php settings_fields( 'wp_auto_featured_image_options' ); ?>
 						<?php do_settings_sections( 'wp_auto_featured_image_options' ); ?>
-						<input name="Submit" type="submit" class="button button-primary" value="<?php esc_attr_e( 'Save Changes', 'wp-default-featured-image' ); ?>" />
+						<input name="Submit" type="submit" class="button button-primary" value="<?php esc_attr_e( 'Save Changes', 'sny-auto-featured-image' ); ?>" />
 					</form>
 				</div>
 			</div>

@@ -75,8 +75,8 @@ class WPAFI_Admin {
 				'wpafi-script',
 				'wpafi_vars',
 				array(
-					'upload_button_text' => esc_html__( 'Upload Thumbnail', 'wp-default-featured-image' ),
-					'delete_button_text' => esc_html__( 'Delete Thumbnail', 'wp-default-featured-image' ),
+					'upload_button_text' => esc_html__( 'Upload Thumbnail', 'sny-auto-featured-image' ),
+					'delete_button_text' => esc_html__( 'Delete Thumbnail', 'sny-auto-featured-image' ),
 				)
 			);
 

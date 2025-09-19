@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name: WP Auto Featured Image
+ * Plugin Name: SNY Auto Featured Image
  * Plugin URI: https://github.com/sannysri/WordPress-Auto-Featured-Image
  * Description: Set a default featured image effortlessly for your posts, pages, or custom post types using our plugin. Streamline the process by establishing a fallback image based on categories. Choose an image from your media library or upload a new one with ease, ensuring a consistent and efficient way to manage featured images across your content.
- * Version: 2.0
+ * Version: 2.0.1
  * Author: Sanny Srivastava
  * Author URI: https://sanny.dev/
  * License: GPL v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: wp-default-featured-image
+ * Text Domain: sny-auto-featured-image
  * Domain Path: /languages
  *
  * @package WP_Auto_Featured_Image
