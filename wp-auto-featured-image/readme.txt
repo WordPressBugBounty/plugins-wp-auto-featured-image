@@ -1,32 +1,57 @@
 === SNY Auto Featured Image ===
 Contributors: sanny_rss
-Tags: featured image, auto featured image, post thumbnail, fallback image
-Donate link: https://sanny.dev/
+Tags: featured image, default featured image, thumbnails, automatic, custom post type
+Donate link: https://sanny.dev/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=sny-auto-featured-image&utm_content=donate
 Requires at least: 3.5
-Tested up to: 6.8.2
-Requires PHP: 5.6
-Stable tag: 2.0.1
+Tested up to: 6.9
+Requires PHP: 7.4
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Automatically set a default featured image for posts, pages, or custom post types when none is assigned.
 
 == Description ==
-Are you tired of manually configuring a default featured image each time you publish a page, post, or custom post type? Do you desire a default featured image to automatically serve as a thumbnail whenever you publish or update your post/page?
 
-Look no further!
+**Automatically set a default featured image** for your WordPress posts, pages, and custom post types. Save time and ensure every piece of content has a professional thumbnail!
 
-This plugin provides a convenient solution to set a default thumbnail image effortlessly for all your posts, pages, or custom post types. Select or upload any image from your media library with ease.
+#### Why Choose SNY Auto Featured Image?
 
-Access the settings via the WordPress Dashboard under Settings => "SNY Auto Featured Image" (admin menu).
+Never publish a post without a featured image again. This lightweight plugin automatically assigns your chosen default image whenever you publish or update content that lacks a featured image.
 
-Quick Setup:
+#### Key Features
 
-* Choose/upload an image from the media library.
-* Specify categories.
-* Define the post types.
+* **One-Click Setup** - Select any image from your media library as the default
+* **Custom Post Type Support** - Works with posts, pages, WooCommerce products, and any custom post type
+* **Category Filtering** - Set default images for specific categories only
+* **Tag Filtering** - Target posts with specific tags
+* **Non-Destructive** - Only adds images to posts without existing featured images
+* **Lightweight & Fast** - No bloat, minimal database queries
+* **GDPR Compliant** - Does not collect any personal data
 
-Please note that this plugin automatically assigns a thumbnail when a post is published or modified, but only if the post lacks a featured image.
+#### Quick Setup
+
+1. Go to **Settings > SNY Auto Featured Image**
+2. Choose or upload an image from the media library
+3. Select your post types and categories
+4. Done! New posts will automatically get your default image
+
+#### Perfect For
+
+* **Bloggers** - Ensure consistent thumbnails across all posts
+* **News Sites** - Never have a missing image in article feeds
+* **WooCommerce Stores** - Default product images for quick imports
+* **Developers** - Clean solution for client sites
+
+#### Documentation & Support
+
+For detailed guides and support, visit [sanny.dev](https://sanny.dev/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=sny-auto-featured-image&utm_content=description).
+
+Found a bug or have a feature request? [Open an issue on GitHub](https://github.com/sannysri/WordPress-Auto-Featured-Image/issues).
+
+#### More WordPress Plugins
+
+Check out our other WordPress plugins at [sanny.dev/plugins](https://sanny.dev/plugins/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=sny-auto-featured-image&utm_content=more_plugins).
 
 == Installation ==
 1. Upload the SNY Auto Featured Image folder to the /wp-content/plugins/ directory.
@@ -53,6 +78,22 @@ Yes, you can.
 No, currently there is no such feature available, but you can hire experts from our team or request a completely custom plugin as per your needs.
 
 == Changelog ==
+
+= 2.0.3 =
+* Added review request notice after 7 days of plugin use.
+* Improved readme with better description and SEO optimization.
+* Added sanny.dev links for documentation and support.
+
+= 2.0.2 =
+* Tested up to WordPress 6.9.
+* Updated minimum PHP requirement to 7.4.
+* Added GitHub Actions for automated deployments.
+
+= 2.0.1 =
+* Fixed readme issues (short description, tags).
+* Updated assets and icons.
+* Stable tag updated.
+
 = 2.0 =
 * Compatibility extended up to version 6.4.2.
 * Code refactoring for improved efficiency.

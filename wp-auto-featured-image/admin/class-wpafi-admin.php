@@ -27,6 +27,12 @@ class WPAFI_Admin {
 		if ( class_exists( 'WPAFI_Settings' ) ) {
 			$wp_auto_featured_image_settings = new WPAFI_Settings();
 		}
+
+		// Include and initialize the review notice class.
+		require_once plugin_dir_path( __FILE__ ) . '/class-wpafi-review-notice.php';
+		if ( class_exists( 'WPAFI_Review_Notice' ) ) {
+			new WPAFI_Review_Notice();
+		}
 	}
 
 	/**
