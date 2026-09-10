@@ -1,40 +1,41 @@
 === SNY Auto Featured Image ===
 Contributors: sanny_rss
-Tags: featured image, default featured image, thumbnails, automatic, custom post type
-Donate link: https://sanny.dev/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=sny-auto-featured-image&utm_content=donate
-Requires at least: 3.5
-Tested up to: 6.9
+Tags: auto featured image, featured image, first image, video thumbnail, bulk thumbnail
+Donate link: https://sanny.dev/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=auto-featured-image&utm_content=donate
+Requires at least: 5.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.0.3
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Automatically set a default featured image for posts, pages, or custom post types when none is assigned.
+SNY Auto Featured Image automatically sets featured images from content, external URLs, or defaults. Bulk preview & apply for existing posts.
 
 == Description ==
 
-**Automatically set a default featured image** for your WordPress posts, pages, and custom post types. Save time and ensure every piece of content has a professional thumbnail!
+**SNY Auto Featured Image** automatically sets featured images for your WordPress posts, pages, and custom post types. Extract from content, use external URLs, set category defaults, or bulk-preview and apply to existing posts.
 
 #### Why Choose SNY Auto Featured Image?
 
-Never publish a post without a featured image again. This lightweight plugin automatically assigns your chosen default image whenever you publish or update content that lacks a featured image.
+Never publish a post without a featured image again. This lightweight plugin automatically assigns featured images based on your custom rules whenever you publish or update content.
 
 #### Key Features
 
-* **One-Click Setup** - Select any image from your media library as the default
-* **Custom Post Type Support** - Works with posts, pages, WooCommerce products, and any custom post type
-* **Category Filtering** - Set default images for specific categories only
-* **Tag Filtering** - Target posts with specific tags
-* **Non-Destructive** - Only adds images to posts without existing featured images
-* **Lightweight & Fast** - No bloat, minimal database queries
-* **GDPR Compliant** - Does not collect any personal data
+* **Conditional Image Rules** - Set specific images based on post type, category, tag, or post status.
+* **Multiple Image Sources** - Choose from Media Library, extract the first image from post content, or use an external image URL.
+* **Video Thumbnail Extraction** - Automatically detects embedded YouTube and Vimeo videos and extracts their thumbnails.
+* **Safe Sideloading** - Optionally download and save external images directly to your WordPress Media Library.
+* **Bulk Preview & Apply** - Dry-run preview of thumbnail assignments with detailed reasons before applying up to 50 posts at a time.
+* **Admin Post List Column** - View featured image thumbnails directly from your post and page listing tables with configurable sizes.
+* **Non-Destructive & Smart Overwrite** - Preserve existing hand-set thumbnails or selectively overwrite when needed.
+* **Lightweight & Fast** - Built with native WordPress APIs, no bloat, and minimal database queries.
 
 #### Quick Setup
 
-1. Go to **Settings > SNY Auto Featured Image**
-2. Choose or upload an image from the media library
-3. Select your post types and categories
-4. Done! New posts will automatically get your default image
+1. Go to **Settings > SNY AFI**
+2. In the **Image Rules** tab, add a rule selecting your image source (Media Library, First Image in Content, or External URL).
+3. Choose your target post types, categories, or tags.
+4. Visit **Bulk Operations** to preview and apply to existing posts, or simply publish new content!
 
 #### Perfect For
 
@@ -54,30 +55,50 @@ Found a bug or have a feature request? [Open an issue on GitHub](https://github.
 Check out our other WordPress plugins at [sanny.dev/plugins](https://sanny.dev/plugins/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=sny-auto-featured-image&utm_content=more_plugins).
 
 == Installation ==
-1. Upload the SNY Auto Featured Image folder to the /wp-content/plugins/ directory.
+1. Upload the plugin folder to the /wp-content/plugins/ directory.
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
-3. Set the default image through your WordPress admin panel in Settings => "SNY Auto Featured Image".
+3. Configure your rules through your WordPress admin panel in Settings => "SNY AFI".
 
 == Screenshots ==
-1. Settings page for "SNY Auto Featured Image".
-2. Choose an image for the default thumbnail.
-3. Featured Image will automatically get assigned if a post is being published or updated and is configured from the backend.
+1. Image Rules: Configure conditional rules with Media Library, first image extraction, and taxonomy filters.
+2. Bulk Preview: Interactive dry-run preview showing current vs proposed thumbnails and match reasons.
+3. Settings: Configure post list thumbnail preview column and customize thumbnail sizes.
+4. Post Listing: Featured image thumbnail column displaying visual previews directly on the Posts screen.
 
 == Frequently Asked Questions ==
 
-= Will this plugin set a default thumbnail for all existing post-types/pages? =
+= How does first image and video extraction work? =
 
-Yes, it will work for all the post types you have configured from the plugin settings. The featured image will automatically get assigned if a post is being published or updated and is configured from the backend.
+When a rule is configured with "First Image/Video", the plugin automatically scans your post content upon publish or update. It detects the first embedded image or video (YouTube and Vimeo) and sets its thumbnail as the post's featured image. You can also enable safe sideloading to download and store the media directly in your WordPress Media Library.
 
-= Can I choose multiple post types for a single default image? =
+= Will this plugin overwrite existing featured images? =
 
-Yes, you can.
+By default, no. The plugin is strictly non-destructive and preserves existing hand-picked thumbnails. If you want a specific rule to replace existing featured images, simply check the "Overwrite existing images" option on that rule card.
 
-= Can I choose different images for different post-types/categories? =
+= How do conditional image rules work? =
 
-No, currently there is no such feature available, but you can hire experts from our team or request a completely custom plugin as per your needs.
+Conditional rules let you assign different images based on post type, category, tag, or post status. When saving or previewing posts, rules are evaluated from top to bottom (the first matching rule wins). Free includes up to 2 active rules.
+
+= How does the bulk operations preview work? =
+
+The Bulk Operations tab provides a safe dry-run preview. Before making any changes, you can click "Preview Changes" to view a table of up to 50 matching posts, comparing their current thumbnail with the proposed thumbnail, along with the matched rule or skip reason.
+
+= Can I see featured images in the WordPress admin post list? =
+
+Yes! In the Settings tab, enable the "Show featured image column in posts list" option. You can customize the thumbnail size (30–150px) and choose which post types display the thumbnail column.
 
 == Changelog ==
+
+= 2.1.0 =
+* NEW: Modern tabbed admin interface (Image Rules, Bulk Operations, Settings, Help).
+* NEW: Conditional image rules with multi-condition filtering (post types, categories, tags, status).
+* NEW: Extract first image or YouTube/Vimeo video thumbnail from post content.
+* NEW: Sideload external images into media library to prevent broken hotlinks.
+* NEW: Featured image column in admin post list with configurable thumbnail size.
+* NEW: Bulk assign featured images to existing posts with safe preview.
+* NEW: Per-rule overwrite settings.
+* IMPROVED: Performance optimizations and sanitization routines.
+* Tested up to WordPress 7.1.
 
 = 2.0.3 =
 * Added review request notice after 7 days of plugin use.
@@ -103,7 +124,7 @@ No, currently there is no such feature available, but you can hire experts from 
 * Compatible up to 6.2.3.
 * Minor bug fix.
 
-= 1.5 =
+= 1.4.1 =
 * Compatible up to 4.9.5.
 * Minor bug fix.
 
@@ -127,6 +148,9 @@ No, currently there is no such feature available, but you can hire experts from 
 * First release.
 
 == Upgrade Notice ==
+
+= 2.1.0 =
+Major release: Conditional rules, first image & YouTube/Vimeo video extraction, safe media sideloading, interactive bulk preview & apply, and admin post list thumbnail column.
 
 = 1.1 =
 * Restrict to specific categories.

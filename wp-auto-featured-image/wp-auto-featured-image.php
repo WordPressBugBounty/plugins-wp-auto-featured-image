@@ -2,8 +2,8 @@
 /**
  * Plugin Name: SNY Auto Featured Image
  * Plugin URI: https://github.com/sannysri/WordPress-Auto-Featured-Image
- * Description: Set a default featured image effortlessly for your posts, pages, or custom post types using our plugin. Streamline the process by establishing a fallback image based on categories. Choose an image from your media library or upload a new one with ease, ensuring a consistent and efficient way to manage featured images across your content.
- * Version: 2.0.3
+ * Description: SNY Auto Featured Image automatically sets featured images from content, external URLs, or defaults. Bulk preview & apply for existing posts.
+ * Version: 2.1.0
  * Author: Sanny Srivastava
  * Author URI: https://sanny.dev/
  * License: GPL v2 or later
@@ -19,7 +19,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define Constants and Version.
-define( 'WP_AUTO_FI_URL', WP_PLUGIN_URL . '/wp-auto-featured-image' );
+define( 'WPAFI_VERSION', '2.1.0' );
+define( 'WPAFI_PLUGIN_URL', plugins_url( '', __FILE__ ) );
+define( 'WPAFI_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+
+/**
+ * Check if Pro plugin is active (regardless of license status).
+ *
+ * @return bool True if Pro plugin is active.
+ */
+function wpafi_is_pro_active() {
+	return defined( 'SNY_AFI_PRO_ACTIVE' ) && SNY_AFI_PRO_ACTIVE;
+}
+
+/**
+ * Check if Pro is active AND licensed (full pro features available).
+ *
+ * @return bool True if Pro features should be used.
+ */
+function wpafi_has_pro_features() {
+	if ( ! wpafi_is_pro_active() ) {
+		return false;
+	}
+	// Pro plugin exposes this function.
+	if ( function_exists( 'sny_afi_is_licensed' ) ) {
+		return sny_afi_is_licensed();
+	}
+	return false;
+}
 
 // Include necessary files.
 require_once plugin_dir_path( __FILE__ ) . 'admin/class-wpafi-admin.php';
