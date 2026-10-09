@@ -10,17 +10,58 @@
 
 // phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Template variables are local scope.
 
-$options          = get_option( 'wpafi_options' );
-$rules            = isset( $options['wpafi_rules'] ) ? $options['wpafi_rules'] : array();
-$is_pro_active    = function_exists( 'wpafi_is_pro_active' ) && wpafi_is_pro_active();
-$has_pro          = function_exists( 'wpafi_has_pro_features' ) && wpafi_has_pro_features();
-$show_pro_teasers = ! $has_pro;
-$upgrade_url      = 'https://sanny.dev/plugins/sny-auto-featured-image-pro/';
-$max_rules        = $has_pro ? 999 : 2;
-$categories       = get_categories( array( 'hide_empty' => false ) );
-$tags             = get_tags( array( 'hide_empty' => false ) );
-$post_types       = get_post_types( array( 'public' => true ), 'objects' );
-$post_statuses    = array(
+$options              = get_option( 'wpafi_options' );
+$rules                = isset( $options['wpafi_rules'] ) ? $options['wpafi_rules'] : array();
+$is_pro_active        = function_exists( 'wpafi_is_pro_active' ) && wpafi_is_pro_active();
+$has_pro              = function_exists( 'wpafi_has_pro_features' ) && wpafi_has_pro_features();
+$show_pro_teasers     = ! $has_pro;
+$base_upgrade_url     = 'https://sanny.dev/plugins/sny-auto-featured-image-pro/';
+$upgrade_url_header   = add_query_arg(
+	array(
+		'utm_source'   => 'plugin',
+		'utm_medium'   => 'header-button',
+		'utm_campaign' => 'pro-features',
+	),
+	$base_upgrade_url
+);
+$upgrade_url_rules    = add_query_arg(
+	array(
+		'utm_source'   => 'plugin',
+		'utm_medium'   => 'rule-limit',
+		'utm_campaign' => 'more-rules',
+	),
+	$base_upgrade_url
+);
+$upgrade_url_showcase = add_query_arg(
+	array(
+		'utm_source'   => 'plugin',
+		'utm_medium'   => 'rules-showcase',
+		'utm_campaign' => 'pro-roadmap',
+	),
+	$base_upgrade_url
+);
+$upgrade_url_help     = add_query_arg(
+	array(
+		'utm_source'   => 'plugin',
+		'utm_medium'   => 'help-pro-features',
+		'utm_campaign' => 'unlock-pro',
+	),
+	$base_upgrade_url
+);
+$upgrade_url_sidebar  = add_query_arg(
+	array(
+		'utm_source'   => 'plugin',
+		'utm_medium'   => 'sidebar-card',
+		'utm_campaign' => 'early-bird',
+	),
+	$base_upgrade_url
+);
+$upgrade_url          = $upgrade_url_header;
+$max_rules            = $has_pro ? 999 : 2;
+$categories           = get_categories( array( 'hide_empty' => false ) );
+$tags                 = get_tags( array( 'hide_empty' => false ) );
+$post_types           = get_post_types( array( 'public' => true ), 'objects' );
+$post_statuses        = array(
 	'publish' => __( 'Published', 'sny-auto-featured-image' ),
 	'draft'   => __( 'Draft', 'sny-auto-featured-image' ),
 	'pending' => __( 'Pending', 'sny-auto-featured-image' ),
@@ -47,7 +88,7 @@ $post_statuses    = array(
 				class="wpafi-version">v<?php echo esc_html( defined( 'WPAFI_VERSION' ) ? WPAFI_VERSION : '2.1.0' ); ?></span>
 		</div>
 		<?php if ( $show_pro_teasers ) : ?>
-		<a href="<?php echo esc_url( $upgrade_url ); ?>"
+		<a href="<?php echo esc_url( $upgrade_url_header ); ?>"
 			class="wpafi-upgrade-btn" target="_blank">
 			<span class="dashicons dashicons-star-filled"></span>
 			<?php esc_html_e( 'Pro Coming Soon', 'sny-auto-featured-image' ); ?>
@@ -137,7 +178,7 @@ $post_statuses    = array(
 							</span>
 								<?php if ( $show_pro_teasers ) : ?>
 							<span class="wpafi-rule-limit-upgrade">
-								— <a href="<?php echo esc_url( $upgrade_url ); ?>"
+								— <a href="<?php echo esc_url( $upgrade_url_rules ); ?>"
 									target="_blank"><?php esc_html_e( 'More rules in Pro (Coming Soon)', 'sny-auto-featured-image' ); ?></a>
 							</span>
 							<?php endif; ?>
@@ -184,7 +225,7 @@ $post_statuses    = array(
 							</div>
 						</div>
 						<div class="wpafi-pro-showcase-cta">
-							<a href="<?php echo esc_url( $upgrade_url ); ?>"
+							<a href="<?php echo esc_url( $upgrade_url_showcase ); ?>"
 								class="button button-primary button-hero" target="_blank">
 								<span class="dashicons dashicons-star-filled"></span>
 								<?php esc_html_e( 'View Pro Roadmap', 'sny-auto-featured-image' ); ?>
@@ -577,7 +618,7 @@ $post_statuses    = array(
 											</div>
 										</div>
 									</div>
-									<a href="<?php echo esc_url( $upgrade_url ); ?>" target="_blank" class="button button-primary button-hero wpafi-unlock-btn">
+									<a href="<?php echo esc_url( $upgrade_url_help ); ?>" target="_blank" class="button button-primary button-hero wpafi-unlock-btn">
 										<span class="dashicons dashicons-unlock"></span>
 										<span><?php esc_html_e( 'View Pro Roadmap', 'sny-auto-featured-image' ); ?></span>
 									</a>
@@ -648,7 +689,7 @@ $post_statuses    = array(
 							<?php esc_html_e( 'Unlimited Bulk Processing', 'sny-auto-featured-image' ); ?>
 						</li>
 					</ul>
-					<a href="<?php echo esc_url( $upgrade_url ); ?>"
+					<a href="<?php echo esc_url( $upgrade_url_sidebar ); ?>"
 						class="button button-primary wpafi-pro-cta" target="_blank">
 						<?php esc_html_e( 'Pro Features Coming Soon', 'sny-auto-featured-image' ); ?>
 					</a>

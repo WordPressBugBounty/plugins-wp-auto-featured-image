@@ -5,7 +5,7 @@ Donate link: https://sanny.dev/?utm_source=wordpress_org&utm_medium=plugin&utm_c
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,12 @@ Yes! In the Settings tab, enable the "Show featured image column in posts list" 
 
 == Changelog ==
 
+= 2.1.1 =
+* IMPROVED: Admin interface refinements and user feedback options.
+* FIX: Rule form validation when saving content extraction and external image rules.
+* FIX: Code formatting and WordPress Coding Standards compliance.
+* TWEAK: Updated documentation and support link references.
+
 = 2.1.0 =
 * NEW: Modern tabbed admin interface (Image Rules, Bulk Operations, Settings, Help).
 * NEW: Conditional image rules with multi-condition filtering (post types, categories, tags, status).
@@ -148,6 +154,9 @@ Yes! In the Settings tab, enable the "Show featured image column in posts list" 
 * First release.
 
 == Upgrade Notice ==
+
+= 2.1.1 =
+Maintenance release: fixes rule form validation and refines admin interface options.
 
 = 2.1.0 =
 Major release: Conditional rules, first image & YouTube/Vimeo video extraction, safe media sideloading, interactive bulk preview & apply, and admin post list thumbnail column.

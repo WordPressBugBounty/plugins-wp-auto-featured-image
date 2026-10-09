@@ -161,47 +161,54 @@ class WPAFI_Admin {
 		// Enqueue the main script for the settings page.
 		wp_enqueue_script( 'wpafi-script' );
 
-			// Prepare categories for JS.
-			$categories     = get_categories( array( 'hide_empty' => false ) );
-			$categories_arr = array();
-			foreach ( $categories as $cat ) {
-				$categories_arr[ $cat->slug ] = $cat->name;
+		// Prepare categories for JS.
+		$categories     = get_categories( array( 'hide_empty' => false ) );
+		$categories_arr = array();
+		foreach ( $categories as $cat ) {
+			$categories_arr[ $cat->slug ] = $cat->name;
+		}
+
+		// Prepare post types for JS.
+		$post_types     = get_post_types( array( 'public' => true ), 'objects' );
+		$post_types_arr = array();
+		foreach ( $post_types as $pt ) {
+			if ( 'attachment' !== $pt->name ) {
+				$post_types_arr[ $pt->name ] = $pt->label;
 			}
+		}
 
-			// Prepare post types for JS.
-			$post_types     = get_post_types( array( 'public' => true ), 'objects' );
-			$post_types_arr = array();
-			foreach ( $post_types as $pt ) {
-				if ( 'attachment' !== $pt->name ) {
-					$post_types_arr[ $pt->name ] = $pt->label;
-				}
-			}
+		// Check if Pro teasers should be shown.
+		$show_pro_teasers = ! $has_pro_features;
+		$upgrade_url      = add_query_arg(
+			array(
+				'utm_source'   => 'plugin',
+				'utm_medium'   => 'rule-limit-js',
+				'utm_campaign' => 'more-rules',
+			),
+			'https://sanny.dev/plugins/sny-auto-featured-image-pro/'
+		);
 
-			// Check if Pro teasers should be shown.
-			$show_pro_teasers = ! $has_pro_features;
-			$upgrade_url      = 'https://sanny.dev/plugins/sny-auto-featured-image-pro/';
-
-			// Localize the script to pass data to JavaScript.
-			wp_localize_script(
-				'wpafi-script',
-				'wpafi_vars',
-				array(
-					'upload_button_text' => esc_html__( 'Upload Thumbnail', 'sny-auto-featured-image' ),
-					'delete_button_text' => esc_html__( 'Delete Thumbnail', 'sny-auto-featured-image' ),
-					'ajax_url'           => admin_url( 'admin-ajax.php' ),
-					'bulk_nonce'         => wp_create_nonce( 'wpafi_bulk_nonce' ),
-					'bulk_processing'    => esc_html__( 'Processing...', 'sny-auto-featured-image' ),
-					'bulk_confirm'       => esc_html__( 'This will update featured images for all matching posts. Continue?', 'sny-auto-featured-image' ),
-					'max_rules'          => $has_pro_features ? 999 : 2,
-					'max_rules_message'  => esc_html__( 'More conditional rules coming in Pro!', 'sny-auto-featured-image' ),
-					'select_image_title' => esc_html__( 'Select Featured Image', 'sny-auto-featured-image' ),
-					'categories'         => $categories_arr,
-					'post_types'         => $post_types_arr,
-					'show_pro_teasers'   => $show_pro_teasers,
-					'upgrade_url'        => esc_url( $upgrade_url ),
-					'upgrade_text'       => esc_html__( 'More rules in Pro (Coming Soon)', 'sny-auto-featured-image' ),
-				)
-			);
+		// Localize the script to pass data to JavaScript.
+		wp_localize_script(
+			'wpafi-script',
+			'wpafi_vars',
+			array(
+				'upload_button_text' => esc_html__( 'Upload Thumbnail', 'sny-auto-featured-image' ),
+				'delete_button_text' => esc_html__( 'Delete Thumbnail', 'sny-auto-featured-image' ),
+				'ajax_url'           => admin_url( 'admin-ajax.php' ),
+				'bulk_nonce'         => wp_create_nonce( 'wpafi_bulk_nonce' ),
+				'bulk_processing'    => esc_html__( 'Processing...', 'sny-auto-featured-image' ),
+				'bulk_confirm'       => esc_html__( 'This will update featured images for all matching posts. Continue?', 'sny-auto-featured-image' ),
+				'max_rules'          => $has_pro_features ? 999 : 2,
+				'max_rules_message'  => esc_html__( 'More conditional rules coming in Pro!', 'sny-auto-featured-image' ),
+				'select_image_title' => esc_html__( 'Select Featured Image', 'sny-auto-featured-image' ),
+				'categories'         => $categories_arr,
+				'post_types'         => $post_types_arr,
+				'show_pro_teasers'   => $show_pro_teasers,
+				'upgrade_url'        => esc_url( $upgrade_url ),
+				'upgrade_text'       => esc_html__( 'More rules in Pro (Coming Soon)', 'sny-auto-featured-image' ),
+			)
+		);
 	}
 
 	/**
@@ -278,6 +285,9 @@ class WPAFI_Admin {
 				// Set the thumbnail and exit.
 				if ( $image_id ) {
 					set_post_thumbnail( $post_id, $image_id );
+					if ( class_exists( 'WPAFI_Review_Notice' ) ) {
+						WPAFI_Review_Notice::increment_assigned_count();
+					}
 					return;
 				}
 			}
@@ -299,6 +309,9 @@ class WPAFI_Admin {
 			$image_id = $this->get_first_image_from_content( $post_id, true, true );
 			if ( $image_id ) {
 				set_post_thumbnail( $post_id, $image_id );
+				if ( class_exists( 'WPAFI_Review_Notice' ) ) {
+					WPAFI_Review_Notice::increment_assigned_count();
+				}
 				return;
 			}
 		}
@@ -306,6 +319,9 @@ class WPAFI_Admin {
 		// Fall back to default thumbnail.
 		if ( ! empty( $options['wpafi_default_thumb_id'] ) ) {
 			set_post_thumbnail( $post_id, $options['wpafi_default_thumb_id'] );
+			if ( class_exists( 'WPAFI_Review_Notice' ) ) {
+				WPAFI_Review_Notice::increment_assigned_count();
+			}
 		}
 	}
 
@@ -1236,6 +1252,10 @@ class WPAFI_Admin {
 					++$failed;
 				}
 			}
+		}
+
+		if ( $updated > 0 && class_exists( 'WPAFI_Review_Notice' ) ) {
+			WPAFI_Review_Notice::increment_assigned_count( $updated );
 		}
 
 		$processed   = $offset + count( $batch_ids );

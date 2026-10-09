@@ -3,9 +3,11 @@
  * Plugin Name: SNY Auto Featured Image
  * Plugin URI: https://github.com/sannysri/WordPress-Auto-Featured-Image
  * Description: SNY Auto Featured Image automatically sets featured images from content, external URLs, or defaults. Bulk preview & apply for existing posts.
- * Version: 2.1.0
+ * Version: 2.1.1
  * Author: Sanny Srivastava
  * Author URI: https://sanny.dev/
+ * Requires at least: 5.0
+ * Requires PHP: 7.4
  * License: GPL v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: sny-auto-featured-image
@@ -19,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define Constants and Version.
-define( 'WPAFI_VERSION', '2.1.0' );
+define( 'WPAFI_VERSION', '2.1.1' );
 define( 'WPAFI_PLUGIN_URL', plugins_url( '', __FILE__ ) );
 define( 'WPAFI_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
